@@ -9,27 +9,35 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.project.dao.LaboratorioDao;
+import com.example.project.entidad.LaboratorioEntity;
+
 import java.util.ArrayList;
 
 public class EncargadoInstructores extends AppCompatActivity {
 
+    LaboratorioDao laboratorioDao;
+    ListView listView;
+    ArrayList<LaboratorioEntity> laboratorioEntities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.encargado_activity_instructores);
-
-
         setTitle("Laboratorio");
+
+        listView = findViewById(R.id.listadoLabs);
+        laboratorioDao = new LaboratorioDao(getApplicationContext());
+        laboratorioEntities = laboratorioDao.getList();
+
 
         ArrayList<String> historial = new ArrayList<>();
 
-        historial.add("Laboratorio 1");
-        historial.add("Laboratorio 2 ");
-        historial.add("Laboratorio 3 ");
+        for (LaboratorioEntity lab : laboratorioEntities)
+        {
+            historial.add(lab.getNivel());
+        }
 
         ArrayAdapter<String> data = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,historial);
-
-        ListView listView = (ListView) findViewById(R.id.listadoLabs);
         listView.setAdapter(data);
 
 
