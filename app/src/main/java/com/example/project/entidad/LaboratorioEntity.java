@@ -1,6 +1,8 @@
 package com.example.project.entidad;
 
-public class LaboratorioEntity {
+import java.io.Serializable;
+
+public class LaboratorioEntity implements Serializable {
 
     private int id;
     private String nombre;

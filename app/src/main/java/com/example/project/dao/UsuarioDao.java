@@ -78,7 +78,7 @@ public class UsuarioDao extends DatabaseHelper{
         contentValues.put("ACC_APELLIDOS", usuario.getApellido());
         contentValues.put("ACC_EMAIL", usuario.getEmail());
         contentValues.put("ACC_CLAVE", usuario.getClave());
-        contentValues.put("ACC_ESTADO", "ACTIVO");
+        contentValues.put("ACC_ESTADO", usuario.getTipo());
 
         database.update(TABLE_USUARIOS, contentValues, "ACC_ID = ?", new String[]{String.valueOf(usuario.getId())});
     }

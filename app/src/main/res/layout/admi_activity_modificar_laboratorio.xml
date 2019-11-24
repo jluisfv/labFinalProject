@@ -11,23 +11,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/menu_Modificar_Laboratorio"
-            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView32"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="24dp"
             android:text="Laboratorio: Nombre del Laboratorio" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/spinnerLab"
             android:layout_width="match_parent"
             android:layout_height="37dp" />
 

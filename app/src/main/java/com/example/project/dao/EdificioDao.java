@@ -41,6 +41,14 @@ public class EdificioDao extends DatabaseHelper {
         contentValues.put("EDI_ESTADO", edificio.getEstado());
         database.insert(TABLE_EDIFICIOS, null, contentValues);
     }
+    public void update(EdificioEntity edificio) {
+        contentValues = new ContentValues();
+        contentValues.put("EDI_NOMBRE", edificio.getNombre());
+        contentValues.put("EDI_PREFIJO", edificio.getPrefijo());
+        contentValues.put("EDI_ESTADO", edificio.getEstado());
+        database.update(TABLE_EDIFICIOS, contentValues, "EDI_ID = ?", new String[]{String.valueOf(edificio.getId())});
+
+    }
 
     public EdificioEntity cursorToEntity(Cursor cursor){
         EdificioEntity edificio = new EdificioEntity(
@@ -51,5 +59,6 @@ public class EdificioDao extends DatabaseHelper {
         );
         return edificio;
     }
+
 
 }

@@ -1,6 +1,8 @@
 package com.example.project.entidad;
 
-public class EdificioEntity {
+import java.io.Serializable;
+
+public class EdificioEntity implements Serializable {
     private int id;
     private String nombre;
     private String prefijo;

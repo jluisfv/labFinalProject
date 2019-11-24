@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdmiMainActivity">
+    tools:context=".AdmiModificarCiclo">
 
     <LinearLayout
         android:layout_width="409dp"
@@ -15,13 +15,13 @@
         tools:layout_editor_absoluteY="1dp"
         tools:ignore="MissingConstraints">
 
-        <EditText
-            android:id="@+id/edtCiclo"
+        <TextView
+            android:id="@+id/textView29"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Ciclo"
-            android:inputType="textPersonName" />
+            android:gravity="center"
+            android:text="Ciclo : 01-2019"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edtFInicio"
@@ -77,4 +77,5 @@
             android:layout_height="wrap_content"
             android:text="Cancelar" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

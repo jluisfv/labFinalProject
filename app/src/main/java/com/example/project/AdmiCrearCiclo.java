@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import com.example.project.dao.CicloDao;
 import com.example.project.entidad.CicloEntity;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -31,7 +29,7 @@ public class AdmiCrearCiclo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_admin_ciclo );
+        setContentView( R.layout.admi_activity_crear_ciclo);
         setTitle("Crear Ciclo");
         cicloDao = new CicloDao(getApplicationContext());
 
@@ -47,14 +45,14 @@ public class AdmiCrearCiclo extends AppCompatActivity {
         edtFInicio.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog( AdmiCrearCiclo.this,date2, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog( AdmiCrearCiclo.this,date1, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
             }
         } );
 
         edtFFin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog( AdmiCrearCiclo.this,date, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog( AdmiCrearCiclo.this,date2, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
             }
 
         } );
@@ -94,23 +92,16 @@ public class AdmiCrearCiclo extends AppCompatActivity {
         } );
     }
 
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener date1 = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
             calendario.set(Calendar.YEAR, year);
             calendario.set(Calendar.MONTH, month);
             calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            actualizarInput();
+            actualizarInput(edtFInicio);
         }
     };
-
-    private void actualizarInput() {
-        String formatoDeFecha = "yyyy-MM-dd"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(formatoDeFecha, Locale.US);
-
-        edtFFin.setText(sdf.format(calendario.getTime()));
-    }
 
     DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
         @Override
@@ -119,15 +110,14 @@ public class AdmiCrearCiclo extends AppCompatActivity {
             calendario.set(Calendar.YEAR, year);
             calendario.set(Calendar.MONTH, month);
             calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            actualizarInput2();
+            actualizarInput(edtFFin);
         }
     };
 
-    private void actualizarInput2() {
+    private void actualizarInput(EditText edt) {
         String formatoDeFecha = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(formatoDeFecha, Locale.US);
-
-        edtFInicio.setText(sdf.format(calendario.getTime()));
+        edt.setText(sdf.format(calendario.getTime()));
     }
 
     public boolean validarEdt(EditText edt){

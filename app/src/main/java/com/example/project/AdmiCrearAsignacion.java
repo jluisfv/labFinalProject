@@ -25,9 +25,9 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_admi_crear_asignacion );
-        //BD objbase = new BD(getApplicationContext(),"DB",null,1);
-        //bd = objbase.getWritableDatabase();
+        setContentView( R.layout.admi_activity_crear_asignacion);
+        setTitle("Crear Asignación");
+
         String tipo = "encargado";
 
         c1 = findViewById(R.id.checkBox);

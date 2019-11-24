@@ -11,61 +11,105 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.dao.EdificioDao;
+import com.example.project.dao.LaboratorioDao;
+import com.example.project.entidad.EdificioEntity;
+import com.example.project.entidad.LaboratorioEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.CoreComponentFactory;
 
 public class AdmiModificarLaboratorio extends AppCompatActivity {
     Button btnGuardar, btnCancelar;
-    TextView tv;
+    TextView tvNombre;
     EditText edtplanta;
-    SQLiteDatabase bd;
+    LaboratorioDao laboratorioDao;
+    EdificioDao edificioDao;
+    ArrayList<LaboratorioEntity> laboratorio;
+    ArrayList<EdificioEntity> listEdificios;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admi_activity_modificar_laboratorio);
-
-        btnGuardar = findViewById( R.id.btnGuardar );
+        setTitle("Modificar Laboratorio");
+        btnGuardar = findViewById(R.id.btnGuardar );
         btnCancelar = findViewById( R.id.btnCancelar );
-        tv = findViewById(R.id.textView32);
+        tvNombre = findViewById(R.id.textView32);
         edtplanta = findViewById(R.id.editText27);
 
-        //BD objbase = new BD(getApplicationContext(),"DB",null,1);
-       // bd = objbase.getWritableDatabase();
+        laboratorioDao = new LaboratorioDao(getApplicationContext());
+        edificioDao = new EdificioDao(getApplicationContext());
+        Bundle bundle = getIntent().getExtras();
+        laboratorio = (ArrayList<LaboratorioEntity>) bundle.getSerializable("laboratorio");
+        listEdificios = edificioDao.getList();
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.edificios_array, android.R.layout.simple_spinner_item);
+        ArrayList<String> encabezadoLista = new ArrayList<>();
+        String edificioSeleccionado = "";
+
+        for (EdificioEntity edificio: listEdificios) {
+            encabezadoLista.add(edificio.getNombre());
+            if(edificio.getId() == laboratorio.get(0).getIdEdificio()) edificioSeleccionado = edificio.getNombre();
+        }
+        spinner = findViewById(R.id.spinnerLab);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, encabezadoLista);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-        Bundle b = getIntent().getExtras();
-        final String nn = b.getString("nlab");
-        tv.setText("Laboratorio:"+" "+nn);
+        spinner.setSelection(adapter.getPosition(edificioSeleccionado));
+        tvNombre.setText(laboratorio.get(0).getNombre());
+        edtplanta.setText(laboratorio.get(0).getNivel());
 
         btnGuardar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String planta = edtplanta.getText().toString();
-                String corre = spinner.getSelectedItem().toString();
-                String Correl = (corre.equals("Francisco Morazan"))?"fm":(corre.equals("Benito Juarez"))?"bj":(corre.equals("Gusepe Garibaldi"))?"gg":(corre.equals("Simon Bolivar"))?"sb":"gm";
-                if(!planta.equals("")){
-                    String consu = "update laboratorios set correlativoedif='"+ Correl +"', planta='"+planta+"' where nombrelab='"+nn+"'";
-                    bd.execSQL(consu,null);
-                    Toast.makeText(getApplicationContext(), "Laboratorio modificado", Toast.LENGTH_SHORT).show();
-                }else{
-                    edtplanta.setError("Digite nueva planta de lab.");
-                    edtplanta.requestFocus();
-                }
+               if(validarEdt(edtplanta)){
+                   int nEdi = spinner.getSelectedItemPosition();
+                   LaboratorioEntity lab = new LaboratorioEntity(
+                           laboratorio.get(0).getId(),
+                           laboratorio.get(0).getNombre(),
+                           listEdificios.get(nEdi).getId(),
+                           edtplanta.getText().toString()
+                   );
+                   laboratorioDao.update(lab);
+                   Toast.makeText( getApplicationContext(),"GUARDADO CON EXITO", Toast.LENGTH_LONG ).show();
+                   Intent intent = new Intent();
+                   setResult(RESULT_OK, intent);
+                   finish();
+               }
             }
         } );
 
         btnCancelar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent obj3 = new Intent( getApplicationContext(), AdmiListadoLaboratorio.class );
-                startActivity( obj3 );
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
+                finish();
             }
         } );
+    }
+
+    public boolean validarEdt(EditText edt){
+        if (edt.getText().toString().isEmpty()){
+            edt.setError("Campo Requerido");
+            edt.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarSpinner(Spinner spinner){
+        if(spinner.getSelectedItemPosition() == 0){
+            spinner.requestFocus();
+            Toast.makeText(getApplicationContext(), "SELECCIONE UN EDIFICIO", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 }

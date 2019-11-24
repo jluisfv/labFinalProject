@@ -1,8 +1,8 @@
 package com.example.project.entidad;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class CicloEntity {
+public class CicloEntity implements Serializable {
     private int id;
     private String codigo;
     private String fechaInicio;

@@ -3,7 +3,6 @@ package com.example.project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +22,8 @@ public class AdmiCrearEdificio extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_admi_crear_edificio );
+        setContentView( R.layout.admi_activity_crear_edificio);
+        setTitle("Crear Edificio");
         edificioDao = new EdificioDao(getApplicationContext());
 
         ededificio = findViewById(R.id.editText15);

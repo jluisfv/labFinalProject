@@ -27,6 +27,7 @@ public class AdmiModificarAsignacion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admi_activity_modificar_asignacion);
+        setTitle("Modificar Asignación");
         //BD objbase = new BD(getApplicationContext(),"DB",null,1);
         //bd = objbase.getWritableDatabase();
         c1 = findViewById(R.id.checkBox);

@@ -47,4 +47,12 @@ public class LaboratorioDao extends DatabaseHelper {
         );
         return laboratorio;
     }
+
+    public void update(LaboratorioEntity laboratorio) {
+        contentValues = new ContentValues();
+        contentValues.put("LAB_NOMBRE", laboratorio.getNombre());
+        contentValues.put("LAB_ID_EDIFICIO", laboratorio.getIdEdificio());
+        contentValues.put("LAB_NIVEL", laboratorio.getNivel());
+        database.update(TABLE_LABORATORIOS, contentValues, "LAB_ID = ?", new String[] {String.valueOf(laboratorio.getId())});
+    }
 }

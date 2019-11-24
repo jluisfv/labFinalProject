@@ -23,6 +23,7 @@ public class AdmiListadoEncargados extends AppCompatActivity {
     UsuarioDao usuarioDao;
     ListView listView;
     ArrayList<UsuarioEntity> encargados;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,9 @@ public class AdmiListadoEncargados extends AppCompatActivity {
         encargados = usuarioDao.list("ENCARGADO");
         ArrayList<String> itemLista = new ArrayList<>();
         for(UsuarioEntity usuario:encargados){
-            itemLista.add(usuario.getNombre());
+            itemLista.add("Encargado: " + usuario.getNombre() + " " + usuario.getApellido() + "\n" +
+                    "Email: " + usuario.getEmail() +"\n"+
+                    "Estado: " + usuario.getEstado());
         }
         listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, itemLista));
 
@@ -54,11 +57,13 @@ public class AdmiListadoEncargados extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
-            encargados.clear();
+            if(encargados != null || encargados.size() > 0)encargados.clear();
             encargados = usuarioDao.list("ENCARGADO");
             ArrayList<String> itemLista = new ArrayList<>();
             for(UsuarioEntity usuario:encargados){
-                itemLista.add(usuario.getNombre());
+                itemLista.add("Encargado: " + usuario.getNombre() + " " + usuario.getApellido() + "\n" +
+                        "Email: " + usuario.getEmail() +"\n"+
+                        "Estado: " + usuario.getEstado());
             }
             listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, itemLista));
             Toast.makeText(getApplicationContext(), "ENCARGADO MODIFICADO CON EXITO", Toast.LENGTH_LONG).show();

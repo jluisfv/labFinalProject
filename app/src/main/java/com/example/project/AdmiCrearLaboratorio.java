@@ -33,13 +33,13 @@ public class AdmiCrearLaboratorio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admi_activity_crear_laboratorio);
+        setTitle("Crear Laboratorio");
         laboratorioDao = new LaboratorioDao(getApplicationContext());
-
         edificioDao = new EdificioDao(getApplicationContext());
 
         listEdificios = edificioDao.getList();
-        List<String> encabezadoLista = new ArrayList<>();
-        encabezadoLista.add("Seleccione un Edificio");
+        ArrayList<String> encabezadoLista = new ArrayList<>();
+
         for (EdificioEntity edificio: listEdificios){
             encabezadoLista.add(edificio.getNombre());
         }
@@ -61,12 +61,13 @@ public class AdmiCrearLaboratorio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validarEdt(edtLab)){
-                    if (validarSpinner(spinner)) {
+
                         if(validarEdt(edtPlanta)){
+                            int nEdi = listEdificios.get(spinner.getSelectedItemPosition()).getId();
                             laboratorio = new LaboratorioEntity(
                                     0,
                                     edtLab.getText().toString(),
-                                    listEdificios.get(spinner.getSelectedItemPosition()+1).getId(),
+                                    nEdi,
                                     edtPlanta.getText().toString()
                             );
                             laboratorioDao.save(laboratorio);
@@ -74,7 +75,7 @@ public class AdmiCrearLaboratorio extends AppCompatActivity {
                             Intent intent = new Intent(getApplicationContext(), AdmiListadoLaboratorio.class);
                             startActivity(intent);
                         }
-                    }
+
                 }
             }
         });

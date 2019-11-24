@@ -38,13 +38,13 @@
     android:id="@+id/crear_ciclo"
     android:name="com.example.project.AdmiCrearCiclo"
     android:label=""
-    tools:layout="@layout/activity_admin_ciclo" />
+    tools:layout="@layout/admi_activity_crear_ciclo" />
 
     <activity
         android:id="@+id/crear_asignacion"
         android:name="com.example.project.AdmiCrearAsignacion"
         android:label=""
-        tools:layout="@layout/activity_admi_crear_asignacion" />
+        tools:layout="@layout/admi_activity_crear_asignacion" />
 
     <activity
     android:id="@+id/listado_asignacion"
@@ -56,19 +56,19 @@
         android:id="@+id/listado_Ciclo"
         android:name="com.example.project.AdmiListadoCiclo"
         android:label=""
-        tools:layout="@layout/activity_admi_listado_ciclo" />
+        tools:layout="@layout/admi_activity_listado_ciclo" />
 
     <activity
         android:id="@+id/crear_edificio"
         android:name="com.example.project.AdmiCrearEdificio"
         android:label=""
-        tools:layout="@layout/activity_admi_crear_edificio" />
+        tools:layout="@layout/admi_activity_crear_edificio" />
 
     <activity
         android:id="@+id/listado_Edificio"
         android:name="com.example.project.AdmiListadoEdificio"
         android:label=""
-        tools:layout="@layout/activity_admi_listado_edificio" />
+        tools:layout="@layout/admi_activity_listado_edificio" />
 
     <activity
         android:id="@+id/asignar_laboratorio"
@@ -80,7 +80,7 @@
         android:id="@+id/crear_asignar_laboratorio"
         android:name="com.example.project.AdmiCrearAsignacion"
         android:label=""
-        tools:layout="@layout/activity_admi_crear_asignacion" />
+        tools:layout="@layout/admi_activity_crear_asignacion" />
 
     <activity
         android:id="@+id/modificar_asignacion_laboratorio"
@@ -92,13 +92,13 @@
         android:id="@+id/modificar_ciclo"
         android:name="com.example.project.AdmiModificarCiclo"
         android:label=""
-        tools:layout="@layout/activity_admi_modificar_ciclo" />
+        tools:layout="@layout/admi_activity_modificar_ciclo" />
 
     <activity
         android:id="@+id/modificar_edificio"
         android:name="com.example.project.AdmiModificarEdificio"
         android:label=""
-        tools:layout="@layout/activity_admi_modificar_edificio" />
+        tools:layout="@layout/admi_activity_modificar_edificio" />
 
     <activity
         android:id="@+id/modificar_encargado"

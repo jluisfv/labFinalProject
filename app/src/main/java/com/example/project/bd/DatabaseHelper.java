@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_EDIFICIOS = "TBL_EDIFICIOS";
     public static final String TABLE_CICLOS = "TBL_CICLOS";
     public static final String TABLE_LABORATORIOS = "TBL_LABORATORIOS";
-    public static final String TABLE_EMPLEADO_ASIGNACION = "TBL_EMPLEADO_ASIGNACION";
+    public static final String TABLE_ENCARGADO_ASIGNACION = "TBL_EMPLEADO_ASIGNACION";
     public static final String TABLE_DETALLE_ENCARGADO_ASIGNACION = "TBL_DET_ENC_ASIG";
     public static final String TABLE_INSTRUCTOR_ASIGNACION = "TBL_INSTRUCTOR_ASIGNACION";
     public static final String TABLE_DETALLE_INSTRUCTOR_ASIGNACION = "TBL_DET_INS_ASIG";
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "CI_ESTADO TEXT );";
         sqLiteDatabase.execSQL(CREATE_CICLOS_TBL);
 
-        String CREATE_EMPLEADO_ASIG_TBL = "CREATE TABLE IF NOT EXISTS "+ TABLE_EMPLEADO_ASIGNACION + " ("+
+        String CREATE_EMPLEADO_ASIG_TBL = "CREATE TABLE IF NOT EXISTS "+ TABLE_ENCARGADO_ASIGNACION + " ("+
                 "ENASIG_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "ENASIG_USUARIO_ID INTEGER, "+
                 "ENASIG_LAB_ID INTEGER, "+
@@ -86,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "ENCDET_DIA TEXT, "+
                 "ENCDET_HORA_INICIO DATETIME, "+
                 "ENCDET_HORA_FIN DATETIME, "+
-                "ENCDET_INCASIG_ID INTEGER);";
+                "ENCDET_ASIG_ID INTEGER);";
         sqLiteDatabase.execSQL(CREATE_DET_ENC_ASIG);
 
         String CREATE_DET_INS_ASIG = "CREATE TABLE IF NOT EXISTS "+ TABLE_DETALLE_INSTRUCTOR_ASIGNACION + " ("+
@@ -154,18 +154,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         values = new ContentValues();
         values.put("EDI_NOMBRE", "Francisco Morazan");
+        values.put("EDI_PREFIJO", "FM");
+        values.put("EDI_ESTADO", "ACTIVO");
         sqLiteDatabase.insert(TABLE_EDIFICIOS, null, values);
         values = new ContentValues();
         values.put("EDI_NOMBRE", "Benito Juarez");
+        values.put("EDI_PREFIJO", "BJ");
+        values.put("EDI_ESTADO", "ACTIVO");
         sqLiteDatabase.insert(TABLE_EDIFICIOS, null, values);
         values = new ContentValues();
         values.put("EDI_NOMBRE", "Giusepe Garibaldi");
+        values.put("EDI_PREFIJO", "GG");
+        values.put("EDI_ESTADO", "ACTIVO");
         sqLiteDatabase.insert(TABLE_EDIFICIOS, null, values);
         values = new ContentValues();
         values.put("EDI_NOMBRE", "Simon Bolivar");
+        values.put("EDI_PREFIJO", "SB");
+        values.put("EDI_ESTADO", "ACTIVO");
         sqLiteDatabase.insert(TABLE_EDIFICIOS, null, values);
         values = new ContentValues();
         values.put("EDI_NOMBRE", "Gabriela Mistral");
+        values.put("EDI_PREFIJO", "GM");
+        values.put("EDI_ESTADO", "ACTIVO");
         sqLiteDatabase.insert(TABLE_EDIFICIOS, null, values);
 
         values = new ContentValues();

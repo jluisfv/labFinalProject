@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdmiModificarEdificio">
+    tools:context=".AdmiCrearEdificio">
 
     <LinearLayout
         android:layout_width="409dp"
@@ -14,21 +14,13 @@
         tools:layout_editor_absoluteY="1dp"
         tools:ignore="MissingConstraints">
 
-        <TextView
-            android:id="@+id/textView36"
+        <EditText
+            android:id="@+id/editText15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Modificar Edificio"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/textView31"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Edificio : Francisco Morazan"
-            android:textSize="18sp" />
+            android:ems="10"
+            android:hint="Edificio"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/editText16"
@@ -36,14 +28,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Prefijo"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/editText21"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Planta"
             android:inputType="textPersonName" />
 
         <TextView
@@ -82,4 +66,5 @@
             android:layout_height="wrap_content"
             android:text="Cancelar" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

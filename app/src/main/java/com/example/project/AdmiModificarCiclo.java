@@ -14,7 +14,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.dao.CicloDao;
+import com.example.project.entidad.CicloEntity;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -24,14 +28,16 @@ public class AdmiModificarCiclo extends AppCompatActivity {
     RadioButton rac,rin;
     Calendar calendario = Calendar.getInstance();
     Button btnGuardar,btnCancelar;
-    SQLiteDatabase bd;
+    CicloDao cicloDao;
+    ArrayList<CicloEntity> ciclo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_admi_modificar_ciclo );
+        setContentView( R.layout.admi_activity_modificar_ciclo);
+        setTitle("Modificar Ciclo");
+        cicloDao = new CicloDao(getApplicationContext());
 
-        //BD objbase = new BD(getApplicationContext(),"DB",null,1);
-        //bd = objbase.getWritableDatabase();
         edtFFin = findViewById(R.id.edtFFin );
         edtFInicio = findViewById( R.id.edtFInicio );
         rac = findViewById(R.id.radioButton5);
@@ -40,21 +46,30 @@ public class AdmiModificarCiclo extends AppCompatActivity {
         btnCancelar = findViewById( R.id.btnCancelar );
         tv = findViewById(R.id.textView29);
 
-        Bundle b = getIntent().getExtras();
-        String nom = b.getString("nombciclo");
-        tv.setText("CICLO:"+" "+nom);
+        Bundle bundle = getIntent().getExtras();
+        ciclo = (ArrayList<CicloEntity>) bundle.getSerializable("ciclo");
+
+        tv.setText("CICLO: "+ ciclo.get(0).getCodigo());
+
+        edtFInicio.setText(ciclo.get(0).getFechaInicio());
+        edtFFin.setText(ciclo.get(0).getFechaFin());
+        if(ciclo.get(0).getEstado().equals("ACTIVO")){
+            rac.setChecked(true);
+        }else{
+            rin.setChecked(true);
+        }
 
         edtFInicio.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog( AdmiModificarCiclo.this,date, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog( AdmiModificarCiclo.this,date1, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
             }
         } );
 
         edtFFin.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog( AdmiModificarCiclo.this,date, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog( AdmiModificarCiclo.this,date2, calendario.get(Calendar.YEAR), calendario.get(Calendar.MONTH),calendario.get(Calendar.DAY_OF_MONTH)).show();
             }
 
         } );
@@ -62,11 +77,18 @@ public class AdmiModificarCiclo extends AppCompatActivity {
         btnGuardar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String finicio = edtFInicio.getText().toString();
-                String ffinal = edtFFin.getText().toString();
-                String estad = (rin.isChecked())?"inactivo":"activo";
-                bd.execSQL("UPDATE ciclos SET iniciociclo='"+finicio+"', finciclo='"+ffinal+"',estadociclo='"+estad+"'");
-                Toast.makeText(getApplicationContext(), "Datos Modificados", Toast.LENGTH_SHORT ).show();
+                CicloEntity ci = new CicloEntity(
+                        ciclo.get(0).getId(),
+                        ciclo.get(0).getCodigo(),
+                        edtFInicio.getText().toString(),
+                        edtFFin.getText().toString(),
+                        (rac.isChecked())? "ACTIVO":"INACTIVO"
+                );
+                cicloDao.update(ci);
+                Intent regresar = new Intent();
+                setResult(RESULT_OK, regresar);
+                finish();
+
             }
         });
 
@@ -74,28 +96,48 @@ public class AdmiModificarCiclo extends AppCompatActivity {
         btnCancelar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent regresar = new Intent( getApplicationContext(), AdmiMainActivity.class );
-                startActivity(regresar);
+                Intent regresar = new Intent();
+                setResult(RESULT_CANCELED, regresar);
+                finish();
             }
         });
     }
 
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+    DatePickerDialog.OnDateSetListener date1 = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
             calendario.set(Calendar.YEAR, year);
             calendario.set(Calendar.MONTH, month);
             calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            actualizarInput();
+            actualizarInput(edtFInicio);
         }
     };
 
-    private void actualizarInput() {
-        String formatoDeFecha = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(formatoDeFecha, Locale.US);
+    DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-        edtFFin.setText(sdf.format(calendario.getTime()));
+            calendario.set(Calendar.YEAR, year);
+            calendario.set(Calendar.MONTH, month);
+            calendario.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            actualizarInput(edtFFin);
+        }
+    };
+
+    private void actualizarInput(EditText edt) {
+        String formatoDeFecha = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(formatoDeFecha, Locale.US);
+        edt.setText(sdf.format(calendario.getTime()));
+    }
+
+    public boolean validarEdt(EditText edt){
+        if (edt.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Por favor, complete todos los campos", Toast.LENGTH_LONG).show();
+            edt.requestFocus();
+            return false;
+        }
+        return true;
     }
 
 }
