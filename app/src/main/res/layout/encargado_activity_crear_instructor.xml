@@ -15,19 +15,27 @@
         tools:layout_editor_absoluteY="10dp">
 
         <EditText
+            android:id="@+id/editText8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editText7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Apellido"
+            android:inputType="textPersonName" />
+
+        <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Correo"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Usuario"
             android:inputType="textPersonName" />
 
         <EditText
@@ -38,10 +46,23 @@
             android:hint="Clave"
             android:inputType="textPassword" />
 
-        <Spinner
-            android:id="@+id/spinner"
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="47dp" />
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rdbEstadoActivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Activo" />
+
+            <RadioButton
+                android:id="@+id/rdbEstadoInactivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inactivo" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/btnGuardar"

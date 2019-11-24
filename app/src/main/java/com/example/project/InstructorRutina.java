@@ -1,6 +1,9 @@
 package com.example.project;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,6 +18,9 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 public class InstructorRutina extends AppCompatActivity {
+
+
+
     Button b1,b2,b3,b4;
     Calendar calendario = Calendar.getInstance();
     int hora, minutos;
