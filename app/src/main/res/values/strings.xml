@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Control de Horas Sociales</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Control de Horas Sociales</string>
+    <string name="nav_header_subtitle">Utec</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_exit">Salir</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_crear_instructor">Crear instructor</string>
+    <string name="menu_historial_instructor">Historial del Instructor</string>
+    <string name="menu_horas_extra">Crear Horas Extras</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_crear_horario">Crear Horarios</string>
+    <string name="menu_crear_actividades">Crear Actividades</string>
+    <string name="menu_listado_actividades">Actividades</string>
+    <string name="menu_horario_Instructor">Horarios por Instructor</string>
+    <string name="menu_instructores">Instructores por laboratorio</string>
+    <string name="menu_actividades">Aprobar Actividades</string>
+    <string name="menu_crear_ciclo">Crear Ciclo</string>
+    <string name="menu_crear_encargado">Crear Encargado</string>
+    <string name="menu_Lista_Encargado">Encargados</string>
+    <string name="menu_Crear_Laboratorio">Crear Laboratorio</string>
+    <string name="menu_Modificar_Laboratorio">Modificar Laboratorio</string>
+    <string name="menu_Lista_Ciclo">Ciclo</string>
+    <string name="menu_inicio">Actividades</string>
+
+    <string-array name="status_array">
+        <item>Activo</item>
+        <item>Inactivo</item>
+    </string-array>
+
+    <string-array name="instructores_array">
+        <item>Carlos Rodriguez</item>
+        <item>Karen Solis</item>
+        <item>Katya Figueroa</item>
+    </string-array>
+
+    <string-array name="edificios_array">
+        <item>Francisco Morazan</item>
+        <item>Benito Juarez</item>
+        <item>Gusepe Garibaldi</item>
+        <item>Simon Bolivar</item>
+        <item>Gabriela Mistral</item>
+    </string-array>
+
+    <string-array name="laboratorios_array">
+        <item>lab1</item>
+        <item>lab2</item>
+    </string-array>
+
+    <string-array name="encargados_array">
+        <item>encargado</item>
+    </string-array>
+
+    <string-array name="actividad_array">
+        <item>Conteo</item>
+        <item>Actualizacion de Software</item>
+        <item>Atencion al Alumno</item>
+    </string-array>
+
+    <string-array name="meses_array">
+        <item>Enero</item>
+        <item>Febrero</item>
+        <item>Marzo</item>
+        <item>Abril</item>
+        <item>Mayo</item>
+        <item>Junio</item>
+        <item>Julio</item>
+        <item>Agosto</item>
+        <item>Septiembre</item>
+        <item>Octubre</item>
+        <item>Noviembre</item>
+        <item>Diciembre</item>
+    </string-array>
+
+    <string-array name="ciclo_array">
+        <item>01-2019</item>
+        <item>02-2019</item>
+    </string-array>
+
+
+</resources>

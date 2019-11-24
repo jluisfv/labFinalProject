@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/encargado_mobile_navigation"
+    app:startDestination="@+id/instru_nav_home">
+
+    <fragment
+        android:id="@+id/instru_nav_home"
+        android:name="com.example.project.ui.instructor.InstructorFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/instructor_fragment" />
+    <activity
+        android:id="@+id/historial_instructor"
+        android:name="com.example.project.InstructorHistorial"
+        tools:layout="@layout/instructor_activity_historial" />
+    <activity
+        android:id="@+id/rutina_instructor"
+        android:name="com.example.project.InstructorRutina"
+        tools:layout="@layout/instructor_activity_rutina" />
+    <activity
+        android:id="@+id/info_instructor"
+        android:name="com.example.project.InstructorInformacion"
+        tools:layout="@layout/instructor_activity_info" />
+</navigation>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/encargado_mobile_navigation"
+    app:startDestination="@+id/encar_nav_home">
+
+    <fragment
+        android:id="@+id/encar_nav_home"
+        android:name="com.example.project.ui.encargado.EncargadoFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/encargado_fragment" />
+    <activity
+        android:id="@+id/crear_instructor_encargado"
+        android:name="com.example.project.EncargadoCrearInstructor"
+        tools:layout="@layout/encargado_activity_crear_instructor" />
+
+    <activity
+        android:id="@+id/historial_instructor_encargado"
+        android:name="com.example.project.EncargadoHistorialInstructor"
+        android:label="activity_historial_instructor_encargado"
+        tools:layout="@layout/encargado_activity_historial_instructor" />
+    <activity
+        android:id="@+id/horas_extra_encargado"
+        android:name="com.example.project.EncargadoHorasExtra"
+        android:label="activity_horas_extra_encargado"
+        tools:layout="@layout/encargado_activity_horas_extra" />
+    <activity
+        android:id="@+id/instructores_encargado"
+        android:name="com.example.project.EncargadoInstructores"
+        android:label="activity_instructores_encargado"
+        tools:layout="@layout/encargado_activity_instructores" />
+    <activity
+        android:id="@+id/aprobar_actividades_encargado"
+        android:name="com.example.project.EncargadoAprobarActividades"
+        android:label="activity_aprobar_actividades_encargado"
+        tools:layout="@layout/encargado_activity_aprobar_actividades" />
+
+    <activity
+        android:id="@+id/crear_horas"
+        android:name="com.example.project.EncargadoCrearHorario"
+        android:label="activity_encargado_crear_horario"
+        tools:layout="@layout/activity_encargado_crear_horario" />
+    <activity
+        android:id="@+id/horarios_instructor"
+        android:name="com.example.project.EncargadoHorariosInstructores"
+        android:label="activity_encargado_horarios_instructores"
+        tools:layout="@layout/activity_encargado_horarios_instructores" />
+    <activity
+        android:id="@+id/crear_actividades_encargado"
+        android:name="com.example.project.EncargadoCrearActividades"
+        android:label="encargado_crear_actividades"
+        tools:layout="@layout/encargado_crear_actividades" />
+
+    <activity
+        android:id="@+id/historial_detalle_instrucor"
+        android:name="com.example.project.EncargadoHistorialDetalleInstructor"
+        android:label="encargado_activity_historial_instructor_detalle"
+        tools:layout="@layout/encargado_activity_historial_instructor_detalle" />
+
+    <activity
+        android:id="@+id/encargado_horarios"
+        android:name="com.example.project.EncargadoHorarios"
+        android:label="activity_encargado_horarios"
+        tools:layout="@layout/activity_encargado_horarios" />
+
+    <activity
+        android:id="@+id/encargado_instructores_laboratorio"
+        android:name="com.example.project.EncargadoInstructoresLabListado"
+        android:label="encargado_activity_instructores_lab_listado"
+        tools:layout="@layout/encargado_activity_instructores_lab_listado" />
+
+    <activity
+        android:id="@+id/encargado_listado_actividades"
+        android:name="com.example.project.EncargadoListadoActividades"
+        android:label="encargado_listado_actividades"
+        tools:layout="@layout/encargado_listado_actividades" />
+
+    <activity
+    android:id="@+id/encargado_modificar_actividades"
+    android:name="com.example.project.EncargadoModificarActividades"
+    android:label="encargado_modificar_actividades"
+    tools:layout="@layout/encargado_modificar_actividades" />
+
+    <activity
+        android:id="@+id/encargado_modificar_horarios"
+        android:name="com.example.project.EncargadoModificarHorarios"
+        android:label="activity_encargado_modificar_horarios"
+        tools:layout="@layout/activity_encargado_modificar_horarios" />
+
+    <activity
+        android:id="@+id/encargadoListadoActividades"
+        android:name="com.example.project.EncargadoListadoActividades"
+        android:label="encargado_listado_actividades"
+        tools:layout="@layout/encargado_listado_actividades" />
+
+</navigation>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+    <item android:title="Encargado">
+        <menu>
+            <item
+                android:id="@+id/listado_encargados"
+                android:icon="@android:drawable/ic_input_get"
+                android:title="Listado de Encargados" />
+            <item
+                android:id="@+id/crear_encargado"
+                android:icon="@mipmap/ic_usuario_foreground"
+                android:title="Crear Encargado" />
+        </menu>
+    </item>
+    <item android:title="Laboratorios">
+    <menu>
+        <item
+            android:id="@+id/listado_laboratorios"
+            android:icon="@android:drawable/ic_input_get"
+            android:title="Listado de Laboratorios" />
+        <item
+            android:id="@+id/crear_laboratorio"
+            android:icon="@mipmap/ic_usuario_foreground"
+            android:title="Crear de Laboratorio" />
+    </menu>
+    </item>
+    <item android:title="Asignacion">
+        <menu>
+            <item
+                android:id="@+id/listado_asignacion"
+                android:icon="@android:drawable/ic_input_get"
+                android:title="Listado de Asignación" />
+            <item
+                android:id="@+id/crear_asignacion"
+                android:icon="@mipmap/ic_usuario_foreground"
+                android:title="Crear Asignación" />
+
+        </menu>
+    </item>
+    <item android:title="Ciclo">
+        <menu>
+            <item
+                android:id="@+id/listado_Ciclo"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="Listado de Ciclos" />
+            <item
+                android:id="@+id/crear_ciclo"
+                android:icon="@android:drawable/ic_menu_save"
+                android:title="Crear Ciclo" />
+
+        </menu>
+    </item>
+        <item android:title="Edificio">
+            <menu>
+                <item
+                    android:id="@+id/listado_Edificio"
+                    android:icon="@android:drawable/ic_menu_agenda"
+                    android:title="Listado de Edificio" />
+                <item
+                    android:id="@+id/crear_edificio"
+                    android:icon="@android:drawable/ic_menu_save"
+                    android:title="Crear Edificio" />
+            </menu>
+        </item>
+    </group>
+</menu>

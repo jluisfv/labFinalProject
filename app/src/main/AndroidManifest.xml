@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.project">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".EncargadoModificarActividades">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoListadoActividades" />
+        </activity>
+        <activity android:name=".EncargadoListadoActividades">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+
+        <activity android:name=".EncargadoCrearActividades">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity android:name=".EncargadoModificarHorarios">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoHorariosInstructores" />
+        </activity>
+        <activity android:name=".EncargadoHorarios" />
+        <activity android:name=".EncargadoHorariosInstructores">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity android:name=".EncargadoCrearHorario">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity android:name=".AdmiModificarEdificio">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiListadoEdificio" />
+        </activity>
+        <activity android:name=".AdmiListadoEdificio">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiCrearEdificio">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiModificarCiclo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiListadoCiclo" />
+        </activity>
+        <activity android:name=".AdmiListadoCiclo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiCrearAsignacion">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiCrearCiclo">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <!-- Activity from Encargado -->
+        <activity android:name=".EncargadoAprobarActividades">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity android:name=".EncargadoInstructoresLabListado">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoInstructores" />
+        </activity>
+        <activity android:name=".EncargadoInstructores">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity android:name=".EncargadoHorasExtra">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity android:name=".EncargadoHistorialDetalleInstructor">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoHistorialInstructor" />
+        </activity>
+        <activity android:name=".EncargadoHistorialInstructor">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity android:name=".EncargadoCrearInstructor">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.EncargadoMainActivity" />
+        </activity>
+        <activity
+            android:name=".EncargadoMainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- End from Encargado -->
+        <!-- Activity from Administrador -->
+        <activity android:name=".AdmiModificarLaboratorio">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiListadoLaboratorio" />
+        </activity>
+        <activity android:name=".AdmiListadoLaboratorio">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiCrearLaboratorio">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiModificarAsignacion">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiListadoAsignacion" />
+        </activity>
+        <activity android:name=".AdmiListadoAsignacion">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiAsignarLab">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiCrearEncargado">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity android:name=".AdmiModificarEncargado">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiListadoEncargados" />
+        </activity>
+        <activity android:name=".AdmiListadoEncargados">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.AdmiMainActivity" />
+        </activity>
+        <activity
+            android:name=".AdmiMainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- End from Administrador -->
+        <activity
+            android:name=".InstructorMainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".InstructorHistorial">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.InstructorMainActivity" />
+        </activity>
+        <activity android:name=".InstructorRutina">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.InstructorMainActivity" />
+        </activity>
+        <activity android:name=".InstructorInformacion">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.project.InstructorMainActivity" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

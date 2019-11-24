@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Instructor">
+        <menu>
+            <item
+                android:id="@+id/crear_instructor_encargado"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="@string/menu_crear_instructor" />
+            <item
+                android:id="@+id/instructores_encargado"
+                android:icon="@drawable/ic_group_black_24dp"
+                android:title="@string/menu_instructores" />
+            <item
+                android:id="@+id/historial_instructor_encargado"
+                android:icon="@drawable/ic_history_black_24dp"
+                android:title="@string/menu_historial_instructor" />
+        </menu>
+        </item>
+        <item android:title="Horas">
+        <menu>
+            <item
+                android:id="@+id/horas_extra_encargado"
+                android:icon="@drawable/ic_access_time_black_24dp"
+                android:title="@string/menu_horas_extra" />
+
+            <item
+                android:id="@+id/crear_horas"
+                android:icon="@android:drawable/ic_menu_recent_history"
+                android:title="@string/menu_crear_horario" />
+
+            <item
+                android:id="@+id/horarios_instructor"
+                android:icon="@drawable/ic_group_black_24dp"
+                android:title="@string/menu_horario_Instructor" />
+        </menu>
+        </item>
+        <item android:title="Actividades">
+        <menu>
+            <item
+                android:id="@+id/aprobar_actividades_encargado"
+                android:icon="@drawable/ic_check_box_black_24dp"
+                android:title="@string/menu_actividades" />
+            <item
+                android:id="@+id/crear_actividades_encargado"
+                android:icon="@android:drawable/ic_input_add"
+                android:title="@string/menu_crear_actividades" />
+
+            <item
+                android:id="@+id/encargadoListadoActividades"
+                android:icon="@android:drawable/ic_menu_sort_by_size"
+                android:title="@string/menu_listado_actividades" />
+
+        </menu>
+        </item>
+    </group>
+
+</menu>

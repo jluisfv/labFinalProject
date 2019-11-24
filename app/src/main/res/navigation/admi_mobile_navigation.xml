@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admi_mobile_navigation"
+    app:startDestination="@+id/admi_nav_home">
+
+    <fragment
+        android:id="@+id/admi_nav_home"
+        android:name="com.example.project.ui.administrador.AdmiFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/admi_fragment" />
+    <activity
+        android:id="@+id/crear_encargado"
+        android:name="com.example.project.AdmiCrearEncargado"
+        android:label=""
+        tools:layout="@layout/admi_activity_crear_encargado" />
+
+    <activity
+        android:id="@+id/listado_encargados"
+        android:name="com.example.project.AdmiListadoEncargados"
+        android:label=""
+        tools:layout="@layout/admi_activity_listado_encargados" />
+
+    <activity
+        android:id="@+id/listado_laboratorios"
+        android:name="com.example.project.AdmiListadoLaboratorio"
+        android:label=""
+        tools:layout="@layout/admi_activity_listado_laboratorio" />
+
+    <activity
+        android:id="@+id/crear_laboratorio"
+        android:name="com.example.project.AdmiCrearLaboratorio"
+        android:label=""
+        tools:layout="@layout/admi_activity_crear_laboratorio" />
+
+    <activity
+    android:id="@+id/crear_ciclo"
+    android:name="com.example.project.AdmiCrearCiclo"
+    android:label=""
+    tools:layout="@layout/activity_admin_ciclo" />
+
+    <activity
+        android:id="@+id/crear_asignacion"
+        android:name="com.example.project.AdmiCrearAsignacion"
+        android:label=""
+        tools:layout="@layout/activity_admi_crear_asignacion" />
+
+    <activity
+    android:id="@+id/listado_asignacion"
+    android:name="com.example.project.AdmiListadoAsignacion"
+    android:label=""
+    tools:layout="@layout/admi_activity_listado_asignacion" />
+
+    <activity
+        android:id="@+id/listado_Ciclo"
+        android:name="com.example.project.AdmiListadoCiclo"
+        android:label=""
+        tools:layout="@layout/activity_admi_listado_ciclo" />
+
+    <activity
+        android:id="@+id/crear_edificio"
+        android:name="com.example.project.AdmiCrearEdificio"
+        android:label=""
+        tools:layout="@layout/activity_admi_crear_edificio" />
+
+    <activity
+        android:id="@+id/listado_Edificio"
+        android:name="com.example.project.AdmiListadoEdificio"
+        android:label=""
+        tools:layout="@layout/activity_admi_listado_edificio" />
+
+    <activity
+        android:id="@+id/asignar_laboratorio"
+        android:name="com.example.project.AdmiAsignarLab"
+        android:label=""
+        tools:layout="@layout/admi_activity_asignar_lab" />
+
+    <activity
+        android:id="@+id/crear_asignar_laboratorio"
+        android:name="com.example.project.AdmiCrearAsignacion"
+        android:label=""
+        tools:layout="@layout/activity_admi_crear_asignacion" />
+
+    <activity
+        android:id="@+id/modificar_asignacion_laboratorio"
+        android:name="com.example.project.AdmiModificarAsignacion"
+        android:label=""
+        tools:layout="@layout/admi_activity_modificar_asignacion" />
+
+    <activity
+        android:id="@+id/modificar_ciclo"
+        android:name="com.example.project.AdmiModificarCiclo"
+        android:label=""
+        tools:layout="@layout/activity_admi_modificar_ciclo" />
+
+    <activity
+        android:id="@+id/modificar_edificio"
+        android:name="com.example.project.AdmiModificarEdificio"
+        android:label=""
+        tools:layout="@layout/activity_admi_modificar_edificio" />
+
+    <activity
+        android:id="@+id/modificar_encargado"
+        android:name="com.example.project.AdmiModificarEncargado"
+        android:label=""
+        tools:layout="@layout/admi_activity_modificar_encargado" />
+
+    <activity
+        android:id="@+id/modificar_laboratorio"
+        android:name="com.example.project.AdmiModificarLaboratorio"
+        android:label=""
+        tools:layout="@layout/admi_activity_modificar_laboratorio" />
+</navigation>
