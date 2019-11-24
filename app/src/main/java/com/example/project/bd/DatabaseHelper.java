@@ -76,6 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_INSTRUCTOR_ASIG_TBL = "CREATE TABLE IF NOT EXISTS "+ TABLE_INSTRUCTOR_ASIGNACION + " ("+
                 "INSASIG_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "INSASIG_USUARIO_ID INTEGER, "+
+                "INSASIG_LAB_ID INTEGER, "+
                 "INSASIG_CI_ID INTEGER, "+
                 "INSASIG_FECHA_INICIO DATETIME, "+
                 "INSASIG_FECHA_FIN DATETIME);";
@@ -84,16 +85,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_DET_ENC_ASIG = "CREATE TABLE IF NOT EXISTS "+ TABLE_DETALLE_ENCARGADO_ASIGNACION + " ("+
                 "ENCDET_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "ENCDET_DIA TEXT, "+
-                "ENCDET_HORA_INICIO DATETIME, "+
-                "ENCDET_HORA_FIN DATETIME, "+
+                "ENCDET_HORA_INICIO TIMESTAMP, "+
+                "ENCDET_HORA_FIN TIMESTAMP, "+
                 "ENCDET_ASIG_ID INTEGER);";
         sqLiteDatabase.execSQL(CREATE_DET_ENC_ASIG);
 
         String CREATE_DET_INS_ASIG = "CREATE TABLE IF NOT EXISTS "+ TABLE_DETALLE_INSTRUCTOR_ASIGNACION + " ("+
                 "INSDET_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "INSDET_DIA TEXT, "+
-                "INSDET_HORA_INICIO DATETIME, "+
-                "INSDET_HORA_FIN DATETIME, "+
+                "INSDET_HORA_INICIO TIMESTAMP, "+
+                "INSDET_HORA_FIN TIMESTAMP, "+
                 "ENCDET_INSASIG_ID INTEGER,"+
                 "INSDET_APROVADO TEXT, "+
                 "INSDET_REVISADO TEXT);";

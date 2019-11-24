@@ -25,12 +25,12 @@ public class AsignacionEncargadoDao extends DatabaseHelper {
         return null;
     }
 
-    public void save(AsignacionEncargadoEntity asignacionEmpleado){
+    public long save(AsignacionEncargadoEntity asignacionEmpleado){
         contentValues = new ContentValues();
         contentValues.put("ENASIG_USUARIO_ID", asignacionEmpleado.getIdEmpleado());
         contentValues.put("ENASIG_LAB_ID", asignacionEmpleado.getIdLab());
         contentValues.put("ENASIG_CI_ID", asignacionEmpleado.getIdCiclo());
-        database.insert(TABLE_ENCARGADO_ASIGNACION, null, contentValues);
+        return database.insert(TABLE_ENCARGADO_ASIGNACION, null, contentValues);
     }
 
     public void update(AsignacionEncargadoEntity asignacionEmpleado){

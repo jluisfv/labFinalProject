@@ -15,21 +15,39 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.project.dao.AsignacionEncargadoDao;
+import com.example.project.dao.DetAsigEncargadoDao;
+import com.example.project.dao.LaboratorioDao;
+import com.example.project.dao.UsuarioDao;
+import com.example.project.entidad.AsignacionEncargadoEntity;
+import com.example.project.entidad.DetAsigEncargadoEntity;
+import com.example.project.entidad.LaboratorioEntity;
+import com.example.project.entidad.UsuarioEntity;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AdmiCrearAsignacion extends AppCompatActivity {
     EditText edtHEntrada, edtHSalida;
     Button btnGuardar, btnCancelar;
     CheckBox c1,c2,c3,c4,c5,c6,c7;
-    SQLiteDatabase bd ;
+
+    LaboratorioDao laboratorioDao;
+    UsuarioDao usuarioDao;
+    AsignacionEncargadoDao asignacionDao;
+    DetAsigEncargadoDao detalleDao;
+
+    ArrayList<UsuarioEntity> encargados;
+    ArrayList<LaboratorioEntity> laboratorios;
+
+    Spinner spinnerLabs;
+    Spinner spinnerEncar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.admi_activity_crear_asignacion);
         setTitle("Crear Asignación");
-
-        String tipo = "encargado";
-
         c1 = findViewById(R.id.checkBox);
         c2 = findViewById(R.id.checkBox2);
         c3 = findViewById(R.id.checkBox3);
@@ -37,27 +55,40 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
         c5 = findViewById(R.id.checkBox5);
         c6 = findViewById(R.id.checkBox6);
         c7 = findViewById(R.id.checkBox7);
-
-
         edtHEntrada = findViewById( R.id.editText18 );
         edtHSalida = findViewById( R.id.editText19 );
-
         btnCancelar =findViewById( R.id.btnCancelar );
         btnGuardar = findViewById( R.id.btnGuardar );
+        spinnerLabs = findViewById(R.id.spinner6);
+        spinnerEncar = findViewById(R.id.spinner7);
 
+        laboratorioDao = new LaboratorioDao(getApplicationContext());
+        usuarioDao = new UsuarioDao(getApplicationContext());
+        asignacionDao = new AsignacionEncargadoDao(getApplicationContext());
+        detalleDao = new DetAsigEncargadoDao(getApplicationContext());
 
+        laboratorios = laboratorioDao.getList();
+        encargados = usuarioDao.list("ENCARGADO");
 
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner6);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.laboratorios_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        ArrayList<String> encabezadoLabs = new ArrayList<>();
+        for(LaboratorioEntity lab:laboratorios){
+            encabezadoLabs.add(lab.getNombre());
+        }
+        ArrayList<String> encabezadoEncar = new ArrayList<>();
+        for(UsuarioEntity encargado:encargados){
+            encabezadoEncar.add(encargado.getNombre());
+        }
 
-        final Spinner encargado = (Spinner) findViewById(R.id.spinner7);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.encargados_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, encabezadoLabs);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        encargado.setAdapter(adapter1);
+        spinnerLabs.setAdapter(adapter1);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, encabezadoEncar);
+
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEncar.setAdapter(adapter2);
 
         edtHSalida.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -104,15 +135,23 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
         btnGuardar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String lab = spinner.getSelectedItem().toString();
-                String encar = encargado.getSelectedItem().toString();
-                String dias = (c1.isChecked())?"lunes":(c2.isChecked())?"martes":(c3.isChecked())?"miercoles":(c4.isChecked())?"jueves":(c5.isChecked())?"viernes":(c6.isChecked())?"sabado":"dominggo";
+                int idLab = spinnerLabs.getSelectedItemPosition();
+                int idEnc = spinnerEncar.getSelectedItemPosition();
                 String entrada = edtHEntrada.getText().toString();
                 String salida = edtHSalida.getText().toString();
-                bd.execSQL("insert into asignacion(nombrelab, encag, diasasig, hentrada, hsalida) values('"+lab+"','"+encar+"','"+dias+"','"+entrada+"','"+salida+"')");
+
+                int idGenerado = (int) asignacionDao.save(
+                        new AsignacionEncargadoEntity(
+                                0,
+                                idLab,
+                                idEnc,
+                                5
+                        )
+                );
+
                 Toast.makeText( getApplicationContext(),"Datos Almacenados", Toast.LENGTH_LONG ).show();
             }
-        } );
+        });
 
         btnCancelar.setOnClickListener( new View.OnClickListener() {
             @Override
