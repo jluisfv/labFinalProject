@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.project.bd.DatabaseHelper;
 import com.example.project.entidad.DetAsigEncargadoEntity;
 
+import java.util.ArrayList;
+
 public class DetAsigEncargadoDao extends DatabaseHelper {
 
     SQLiteDatabase database;
@@ -17,12 +19,15 @@ public class DetAsigEncargadoDao extends DatabaseHelper {
         database = super.getWritableDatabase();
     }
 
-    public DetAsigEncargadoEntity findByIdAsig(int id){
-        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_DETALLE_ENCARGADO_ASIGNACION +" WHERE ENCDET_ID = ?", new String[]{String.valueOf(id)});
+    public ArrayList<DetAsigEncargadoEntity> findByIdAsig(int id){
+        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_DETALLE_ENCARGADO_ASIGNACION +" WHERE ENCDET_ASIG_ID = ?", new String[]{String.valueOf(id)});
+        ArrayList<DetAsigEncargadoEntity> list = new ArrayList<>();
         if (cursor.moveToFirst()){
-            return cursorToEntity(cursor);
+            do {
+                list.add(cursorToEntity(cursor));
+            }while (cursor.moveToNext());
         }
-        return null;
+        return list;
     }
 
     public void save(DetAsigEncargadoEntity detAsigEmpleado){
@@ -56,5 +61,9 @@ public class DetAsigEncargadoDao extends DatabaseHelper {
                 cursor.getInt(cursor.getColumnIndex("ENCDET_ASIG_ID"))
         );
         return asigDet;
+    }
+
+    public void deleteByIdAsig(int idAsig) {
+        database.delete(TABLE_DETALLE_ENCARGADO_ASIGNACION, "ENCDET_ASIG_ID = ?", new String[]{String.valueOf(idAsig)});
     }
 }

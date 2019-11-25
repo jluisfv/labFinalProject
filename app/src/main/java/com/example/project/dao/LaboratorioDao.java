@@ -19,6 +19,16 @@ public class LaboratorioDao extends DatabaseHelper {
         database = super.getWritableDatabase();
     }
 
+    public LaboratorioEntity findById(int id){
+        cursor = database.rawQuery("SELECT * FROM "+ TABLE_LABORATORIOS+" WHERE LAB_ID = ?",
+                new String[]{String.valueOf(id)});
+        if (cursor.moveToFirst())
+        {
+            return cursorToEntity(cursor);//Devuelve el objeto
+        }
+        return null;//sino null
+    }
+
     public ArrayList<LaboratorioEntity> getList(){
         ArrayList<LaboratorioEntity> list = new ArrayList<>();
         cursor = database.rawQuery("SELECT * FROM "+ TABLE_LABORATORIOS, null);

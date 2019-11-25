@@ -22,6 +22,16 @@ public class UsuarioDao extends DatabaseHelper{
         database = super.getWritableDatabase();
     }
 
+    public UsuarioEntity findById(int id){
+        cursor = database.rawQuery("SELECT * FROM "+ TABLE_USUARIOS+" WHERE ACC_ID = ?",
+                new String[]{String.valueOf(id)});
+        if (cursor.moveToFirst())
+        {
+            return cursorToEntity(cursor);//Devuelve el objeto
+        }
+        return null;//sino null
+    }
+
     public UsuarioEntity findAcceso(String usuario, String clave){
         cursor = database.rawQuery("SELECT * FROM "+ TABLE_USUARIOS+" WHERE ACC_EMAIL = ? AND ACC_CLAVE = ?",
                 new String[]{ usuario, clave});

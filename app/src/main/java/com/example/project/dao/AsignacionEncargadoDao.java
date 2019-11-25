@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.project.bd.DatabaseHelper;
 import com.example.project.entidad.AsignacionEncargadoEntity;
 
+import java.util.ArrayList;
+
 public class AsignacionEncargadoDao extends DatabaseHelper {
 
     SQLiteDatabase database;
@@ -23,6 +25,17 @@ public class AsignacionEncargadoDao extends DatabaseHelper {
             return cursorToEntity(cursor);
         }
         return null;
+    }
+
+    public ArrayList<AsignacionEncargadoEntity> getList(){
+        ArrayList<AsignacionEncargadoEntity> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_ENCARGADO_ASIGNACION, null);
+        if(cursor.moveToFirst()){
+            do {
+                list.add(cursorToEntity(cursor));
+            }while (cursor.moveToNext());
+        }
+        return list;
     }
 
     public long save(AsignacionEncargadoEntity asignacionEmpleado){

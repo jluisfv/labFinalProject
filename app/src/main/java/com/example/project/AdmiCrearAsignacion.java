@@ -16,10 +16,12 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.project.dao.AsignacionEncargadoDao;
+import com.example.project.dao.CicloDao;
 import com.example.project.dao.DetAsigEncargadoDao;
 import com.example.project.dao.LaboratorioDao;
 import com.example.project.dao.UsuarioDao;
 import com.example.project.entidad.AsignacionEncargadoEntity;
+import com.example.project.entidad.CicloEntity;
 import com.example.project.entidad.DetAsigEncargadoEntity;
 import com.example.project.entidad.LaboratorioEntity;
 import com.example.project.entidad.UsuarioEntity;
@@ -36,12 +38,15 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
     UsuarioDao usuarioDao;
     AsignacionEncargadoDao asignacionDao;
     DetAsigEncargadoDao detalleDao;
+    CicloDao cicloDao;
 
     ArrayList<UsuarioEntity> encargados;
     ArrayList<LaboratorioEntity> laboratorios;
+    ArrayList<CicloEntity> ciclos;
 
     Spinner spinnerLabs;
     Spinner spinnerEncar;
+    Spinner spinnerCiclos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +66,18 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
         btnGuardar = findViewById( R.id.btnGuardar );
         spinnerLabs = findViewById(R.id.spinner6);
         spinnerEncar = findViewById(R.id.spinner7);
+        spinnerCiclos = findViewById(R.id.spinner8);
 
         laboratorioDao = new LaboratorioDao(getApplicationContext());
         usuarioDao = new UsuarioDao(getApplicationContext());
         asignacionDao = new AsignacionEncargadoDao(getApplicationContext());
         detalleDao = new DetAsigEncargadoDao(getApplicationContext());
+        cicloDao = new CicloDao(getApplicationContext());
+
 
         laboratorios = laboratorioDao.getList();
         encargados = usuarioDao.list("ENCARGADO");
+        ciclos = cicloDao.getList();
 
         ArrayList<String> encabezadoLabs = new ArrayList<>();
         for(LaboratorioEntity lab:laboratorios){
@@ -78,6 +87,10 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
         for(UsuarioEntity encargado:encargados){
             encabezadoEncar.add(encargado.getNombre());
         }
+        ArrayList<String> encabezadoCiclos = new ArrayList<>();
+        for(CicloEntity ciclo:ciclos){
+            encabezadoCiclos.add(ciclo.getCodigo());
+        }
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, encabezadoLabs);
@@ -86,9 +99,13 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
 
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, encabezadoEncar);
-
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerEncar.setAdapter(adapter2);
+
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, encabezadoCiclos);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCiclos.setAdapter(adapter3);
 
         edtHSalida.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -135,21 +152,40 @@ public class AdmiCrearAsignacion extends AppCompatActivity {
         btnGuardar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int idLab = spinnerLabs.getSelectedItemPosition();
-                int idEnc = spinnerEncar.getSelectedItemPosition();
+                int idLab = laboratorios.get(spinnerLabs.getSelectedItemPosition()).getId();
+                int idEnc = encargados.get(spinnerEncar.getSelectedItemPosition()).getId();
+                int idCiclo = ciclos.get(spinnerCiclos.getSelectedItemPosition()).getId();
                 String entrada = edtHEntrada.getText().toString();
                 String salida = edtHSalida.getText().toString();
 
                 int idGenerado = (int) asignacionDao.save(
-                        new AsignacionEncargadoEntity(
-                                0,
-                                idLab,
-                                idEnc,
-                                5
-                        )
+                        new AsignacionEncargadoEntity(0, idEnc, idLab, idCiclo)
                 );
 
+                if(c1.isChecked()){ //Lunes
+                    detalleDao.save(new DetAsigEncargadoEntity(0, 1,entrada, salida, idGenerado));
+                }
+                if(c2.isChecked()){//Martes
+                    detalleDao.save(new DetAsigEncargadoEntity(0, 2,entrada, salida, idGenerado));
+                }
+                if(c3.isChecked()){//Miercoles
+                    detalleDao.save(new DetAsigEncargadoEntity(0, 3,entrada, salida, idGenerado));
+                }
+                if(c4.isChecked()){//Jueves
+                    detalleDao.save(new DetAsigEncargadoEntity(0, 4,entrada, salida, idGenerado));
+                }
+                if(c5.isChecked()){//Viernes
+                    detalleDao.save(new DetAsigEncargadoEntity(0, 5,entrada, salida, idGenerado));
+                }
+                if(c6.isChecked()){//Sabado
+                    detalleDao.save(new DetAsigEncargadoEntity(0, 6,entrada, salida, idGenerado));
+                }
+                if(c7.isChecked()){//Domingo
+                    detalleDao.save(new DetAsigEncargadoEntity(0, 7,entrada, salida, idGenerado));
+                }
                 Toast.makeText( getApplicationContext(),"Datos Almacenados", Toast.LENGTH_LONG ).show();
+                Intent intent = new Intent(getApplicationContext(), AdmiListadoAsignacion.class);
+                startActivity(intent);
             }
         });
 

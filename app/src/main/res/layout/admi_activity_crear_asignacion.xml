@@ -20,6 +20,10 @@
             android:id="@+id/spinner7"
             android:layout_width="match_parent"
             android:layout_height="43dp" />
+        <Spinner
+            android:id="@+id/spinner8"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

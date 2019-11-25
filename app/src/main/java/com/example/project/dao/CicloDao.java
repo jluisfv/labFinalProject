@@ -19,6 +19,16 @@ public class CicloDao extends DatabaseHelper {
         database = super.getWritableDatabase();
     }
 
+    public CicloEntity findById(int id){
+        Cursor cursor = database.rawQuery("SELECT * FROM "+ TABLE_CICLOS+" WHERE CI_ID = ?",
+                new String[]{String.valueOf(id)});
+        if (cursor.moveToFirst())
+        {
+            return cursorToEntity(cursor);//Devuelve el objeto
+        }
+        return null;//sino null
+    }
+
     public ArrayList<CicloEntity> getList(){
         ArrayList<CicloEntity> list = new ArrayList<>();
         Cursor cursor = database.rawQuery("SELECT * FROM "+TABLE_CICLOS, null);
