@@ -55,6 +55,21 @@ public class UsuarioDao extends DatabaseHelper{
         return lista;
     }
 
+    public ArrayList<UsuarioEntity> listPorLaboratorio(String idLab){
+        ArrayList<UsuarioEntity> lista = new ArrayList<>();
+        UsuarioEntity usuario;
+        cursor = database.rawQuery("SELECT * FROM "+ TABLE_INSTRUCTOR_ASIGNACION + " a INNER join "+TABLE_USUARIOS+" u" +
+                                        " on a.INSASIG_USUARIO_ID = u.ACC_ID where a.INSASIG_LAB_ID = ? ", new String[]{ idLab });
+        if (cursor.moveToFirst()){
+            do{
+                usuario = cursorToEntity(cursor);
+                lista.add(usuario);
+            }while (cursor.moveToNext());
+        }
+        return lista;
+    }
+
+
     public ArrayList<UsuarioEntity> list(String tipo){
         ArrayList<UsuarioEntity> lista = new ArrayList<>();
         UsuarioEntity usuario;
