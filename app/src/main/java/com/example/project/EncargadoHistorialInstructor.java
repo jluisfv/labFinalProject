@@ -9,9 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.project.dao.UsuarioDao;
+import com.example.project.entidad.UsuarioEntity;
+
 import java.util.ArrayList;
 
 public class EncargadoHistorialInstructor extends AppCompatActivity {
+    UsuarioDao usuarioDao;
+    ListView listView;
+    ArrayList<UsuarioEntity> instructor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,23 +25,27 @@ public class EncargadoHistorialInstructor extends AppCompatActivity {
         setContentView(R.layout.encargado_activity_historial_instructor);
 
         setTitle("Historial del instructor");
+        listView = findViewById(R.id.listadoHistorialInstructores);
+        usuarioDao = new UsuarioDao(getApplication());
 
-        ArrayList<String> historial = new ArrayList<>();
+        instructor = usuarioDao.list("INSTRUCTOR");
 
-        historial.add("Maria Benitez Ma-Ju 8:00-12:00 ");
-        historial.add("Carlos Rodriguez Sab 8:00-12:00 ");
-        historial.add("Juan Perez Lu-Vi 9:30-11:00 ");
 
-        ArrayAdapter<String> data = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,historial);
-
-        ListView listView = (ListView) findViewById(R.id.listadoHistorialInstructores);
-        listView.setAdapter(data);
+        final ArrayList<String> instructores = new ArrayList<>();
+        for(UsuarioEntity usuario:instructor){
+            instructores.add("Instructor: " + usuario.getNombre() + " " + usuario.getApellido() + "\n" +
+                    "Email: " + usuario.getEmail());
+        }
+        listView.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, instructores));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent historial_detalle = new Intent(getApplicationContext(), EncargadoHistorialDetalleInstructor.class);
-                startActivity(historial_detalle);
+                Intent intent = new Intent(getApplicationContext(), EncargadoHistorialDetalleInstructor.class);
+                ArrayList<UsuarioEntity> usuarioSeleccionado = new ArrayList<>();
+                usuarioSeleccionado.add(instructor.get(i));
+                intent.putExtra("instructor", usuarioSeleccionado);
+                startActivityForResult(intent, 1);
             }
         });
 

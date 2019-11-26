@@ -9,12 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.project.R;
+import com.example.project.dao.CicloDao;
+import com.example.project.dao.UsuarioDao;
+import com.example.project.entidad.CicloEntity;
+import com.example.project.entidad.UsuarioEntity;
+
+import java.util.ArrayList;
 
 public class EncargadoHistorialDetalleInstructor extends AppCompatActivity {
-
-    Button btnRegresar, btnGenerar;
+    Spinner spinner9,spinner10;
+    Button btnRegresar, btnGenerar, btnFiltro,btnFiltro2;
+    TextView instructores;
+    ArrayList<CicloEntity> ciclos;
+    CicloDao cicloDao;
+    UsuarioDao usuarioDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +34,19 @@ public class EncargadoHistorialDetalleInstructor extends AppCompatActivity {
 
         btnGenerar = findViewById( R.id.btnGenerar );
         btnRegresar = findViewById( R.id.btnRegresar );
+        btnFiltro = findViewById( R.id.btnFiltro );
+        btnFiltro2 = findViewById( R.id.btnFiltro2 );
+        spinner9 = findViewById( R.id.spinner9 );
+        spinner10 = findViewById( R.id.spinner10 );
+        instructores = findViewById( R.id.textView3 );
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner9);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.meses_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        Bundle bundle = getIntent().getExtras();
+        final ArrayList<UsuarioEntity> instructor= (ArrayList<UsuarioEntity>) bundle.getSerializable("instructor");
+        instructores.setText("Instructor " +  instructor.get(0).getNombre() + " " + instructor.get( 0 ).getApellido());
 
-        Spinner spinner1 = (Spinner) findViewById(R.id.spinner10);
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.ciclo_array, android.R.layout.simple_spinner_item);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(adapter1);
+        cicloDao = new CicloDao(getApplicationContext());
+        usuarioDao = new UsuarioDao(getApplicationContext());
+        ciclos = cicloDao.getList();
 
         btnRegresar.setOnClickListener( new View.OnClickListener( ) {
             @Override
