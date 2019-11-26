@@ -33,7 +33,7 @@ public class UsuarioDao extends DatabaseHelper{
     }
 
     public UsuarioEntity findAcceso(String usuario, String clave){
-        cursor = database.rawQuery("SELECT * FROM "+ TABLE_USUARIOS+" WHERE ACC_EMAIL = ? AND ACC_CLAVE = ?",
+        cursor = database.rawQuery("SELECT * FROM "+ TABLE_USUARIOS+" WHERE ACC_EMAIL = lower(?) AND ACC_CLAVE = lower(?)",
                 new String[]{ usuario, clave});
         if (cursor.moveToFirst())
         {
