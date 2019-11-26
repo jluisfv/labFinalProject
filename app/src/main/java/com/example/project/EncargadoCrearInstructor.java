@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,6 +48,12 @@ public class EncargadoCrearInstructor extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(validate(nombre)){
+                    if(validate(apellido)){
+                        if(validate(correo)){
+                            if(validate(clave)){
+
+
                 String estado = "";
                 if(activo.isChecked())
                 {
@@ -66,7 +73,7 @@ public class EncargadoCrearInstructor extends AppCompatActivity {
                 usuarioDao.save(usuarioEntity);
 
                 Toast.makeText( getApplicationContext(),"Datos Almacenados",Toast.LENGTH_LONG ).show();
-
+                            }}}}
             }
         } );
 
@@ -77,5 +84,14 @@ public class EncargadoCrearInstructor extends AppCompatActivity {
                 startActivity( cancelar );
             }
         } );
+    }
+    boolean validate(EditText edt){
+        boolean result = true;
+        if (TextUtils.isEmpty(edt.getText())){
+            result = false;
+            edt.setError("Campo Requerido");
+            edt.requestFocus();
+        }
+        return result;
     }
 }
