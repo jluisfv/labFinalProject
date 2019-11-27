@@ -30,6 +30,16 @@ public class ActividadDao extends DatabaseHelper {
         return list;
     }
 
+    public ActividadEntity getActivity(String id)
+    {
+        ActividadEntity act = null;
+        cursor = database.rawQuery("SELECT * FROM "+ TABLE_ACTIVIDADES + " where ACT_ID = ?", new String[]{id});
+        while (cursor.moveToNext()){
+            act = cursorToEntity(cursor);
+        }
+        return act;
+    }
+
     public void save( ActividadEntity actividad){
         contentValues = new ContentValues();
         contentValues.put("ACT_NOMBRE", actividad.getActividad());

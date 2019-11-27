@@ -20,7 +20,7 @@ public class EncargadoCrearActividades extends AppCompatActivity {
     EditText edtActividad,edtDetalle;
     Button btnGuardar,btnCancelar;
     ActividadDao actividad;
-
+    int id = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -37,20 +37,47 @@ public class EncargadoCrearActividades extends AppCompatActivity {
         btnGuardar = findViewById( R.id.btnGuardar );
 
         setTitle( "Crear Actividades" );
+        ActividadEntity act;
 
+
+        //se obtiene el id si es editar se usa la misma actividad
+        if(getIntent()!=null && getIntent().getExtras()!=null){
+            Bundle bundle = getIntent().getExtras();
+                String acti = getIntent().getExtras().getString("actividad");
+                if(acti != null)
+                {
+                    act = actividad.getActivity(acti);
+                    id = act.getId();
+                    edtActividad.setText(act.getActividad());
+                    edtDetalle.setText(act.getDescripcion());
+                    if(act.getEstado().equals("ACTIVO"))
+                    {
+                        r1.setChecked(true);
+                    }else {
+                        r2.setChecked(true);
+                    }
+                }
+
+
+        }
 
         btnGuardar.setOnClickListener( new View.OnClickListener( ) {
             @Override
             public void onClick(View v) {
                 if(validar(edtActividad)){
                     if(validar(edtDetalle)){
-                        actividad.save(new ActividadEntity(
-                                        0,
-                                        edtActividad.getText().toString(),
-                                        edtDetalle.getText().toString(),
-                                        (r1.isChecked())?"ACTIVO": "INACTIVO"
-                                )
-                        );
+                        ActividadEntity actividadEntity = new ActividadEntity(
+                                id,
+                                edtActividad.getText().toString(),
+                                edtDetalle.getText().toString(),
+                                (r1.isChecked())?"ACTIVO": "INACTIVO");
+                        if(id != -1)
+                        {
+                            actividad.update(actividadEntity);
+                        }else {
+                            actividad.save(actividadEntity);
+                        }
+
                         Toast.makeText(getApplicationContext(), "ACTIVIDAD GUARDADA CON EXITO", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(), EncargadoListadoActividades.class);
                         startActivity(intent);

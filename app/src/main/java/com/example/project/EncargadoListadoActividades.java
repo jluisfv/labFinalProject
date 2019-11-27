@@ -43,8 +43,9 @@ public class EncargadoListadoActividades extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ArrayList<ActividadEntity> actividades = new ArrayList<>();
                 actividades.add(actividad.get( position ));
-                Intent acty = new Intent(getApplicationContext(), EncargadoModificarActividades.class);
-                acty.putExtra("actividad", actividades);
+                Intent acty = new Intent(getApplicationContext(), EncargadoCrearActividades.class);
+                int idAc = actividad.get(position).getId();
+                acty.putExtra("actividad", String.valueOf(idAc));
                 startActivityForResult( acty, 2 );
             }
         } );
