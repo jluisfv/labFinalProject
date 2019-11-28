@@ -8,6 +8,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -57,6 +59,8 @@ public class AdmiMainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_exit) {
+            SharedPreferences mPrefs = getSharedPreferences("Global", Context.MODE_PRIVATE);
+            mPrefs.edit().clear().apply();
             finish();
         }
         return super.onOptionsItemSelected(item);

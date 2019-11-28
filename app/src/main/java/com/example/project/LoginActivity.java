@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
             SharedPreferences mPrefs = getSharedPreferences("Global", Context.MODE_PRIVATE);
             SharedPreferences.Editor prefsEditor = mPrefs.edit();
+            mPrefs.edit().clear().apply();
             prefsEditor.putInt("idUsuario", usuarioEntity.getId());
             prefsEditor.putString("nombreUsuario", usuarioEntity.getNombre());
             prefsEditor.putString("apellidoUsuario", usuarioEntity.getApellido());
