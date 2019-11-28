@@ -50,7 +50,7 @@ public class AdmiModificarLaboratorio extends AppCompatActivity {
 
         ArrayList<String> encabezadoLista = new ArrayList<>();
         String edificioSeleccionado = "";
-
+        encabezadoLista.add("");
         for (EdificioEntity edificio: listEdificios) {
             encabezadoLista.add(edificio.getNombre());
             if(edificio.getId() == laboratorio.get(0).getIdEdificio()) edificioSeleccionado = edificio.getNombre();
@@ -68,20 +68,22 @@ public class AdmiModificarLaboratorio extends AppCompatActivity {
         btnGuardar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(validarEdt(edtplanta)){
-                   int nEdi = spinner.getSelectedItemPosition();
-                   LaboratorioEntity lab = new LaboratorioEntity(
-                           laboratorio.get(0).getId(),
-                           laboratorio.get(0).getNombre(),
-                           listEdificios.get(nEdi).getId(),
-                           edtplanta.getText().toString()
-                   );
-                   laboratorioDao.update(lab);
-                   Toast.makeText( getApplicationContext(),"GUARDADO CON EXITO", Toast.LENGTH_LONG ).show();
-                   Intent intent = new Intent();
-                   setResult(RESULT_OK, intent);
-                   finish();
-               }
+                if(validarSpinner(spinner)) {
+                    if (validarEdt(edtplanta)) {
+                        int nEdi = spinner.getSelectedItemPosition() - 1;
+                        LaboratorioEntity lab = new LaboratorioEntity(
+                                laboratorio.get(0).getId(),
+                                laboratorio.get(0).getNombre(),
+                                listEdificios.get(nEdi).getId(),
+                                edtplanta.getText().toString()
+                        );
+                        laboratorioDao.update(lab);
+                        Toast.makeText(getApplicationContext(), "GUARDADO CON EXITO", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent();
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
+                }
             }
         } );
 

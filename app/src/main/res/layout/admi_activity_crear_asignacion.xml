@@ -4,26 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdmiCrearAsignacion">
+    tools:context=".AdmiCrearAsignacion" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="4dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_laboratorio"/>
 
         <Spinner
             android:id="@+id/spinner6"
             android:layout_width="match_parent"
-            android:layout_height="34dp" />
+            android:layout_height="34dp"
+            android:spinnerMode="dialog"
+            android:prompt="@string/spinner_laboratorio"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_encargado"/>
 
         <Spinner
             android:id="@+id/spinner7"
             android:layout_width="match_parent"
-            android:layout_height="43dp" />
+            android:layout_height="43dp"
+            android:spinnerMode="dialog"
+            android:prompt="@string/spinner_encargado"
+            android:layout_marginBottom="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/spinner_ciclo"/>
+
         <Spinner
             android:id="@+id/spinner8"
             android:layout_width="match_parent"
-            android:layout_height="43dp" />
+            android:layout_height="43dp"
+            android:spinnerMode="dialog"
+            android:prompt="@string/spinner_ciclo"
+            android:layout_marginBottom="15dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,6 +118,8 @@
             android:hint="Hora de Entrada"
             android:inputType="textPersonName"
             android:focusable="false"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
             />
 
         <EditText
@@ -101,19 +128,34 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Hora de Salida"
-            android:inputType="textPersonName"
-            />
+            android:inputType="textPersonName" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <Button
             android:id="@+id/btnGuardar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="4dp"
+            android:background="@color/btnPrimary"
+            android:textColor="@color/mr_cast_meta_default_text_color"
             android:text="Guardar" />
 
         <Button
             android:id="@+id/btnCancelar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:background="@color/mr_cast_progressbar_background_light"
             android:text="Cancelar" />
     </LinearLayout>
 

@@ -30,7 +30,6 @@ public class AdmiListadoAsignacion extends AppCompatActivity {
     AsignacionEncargadoDao asignacionDao;
     DetAsigEncargadoDao detalleDao;
     CicloDao cicloDao;
-
     ArrayList<AsignacionEncargadoEntity> asignaciones;
 
     @Override
@@ -49,23 +48,23 @@ public class AdmiListadoAsignacion extends AppCompatActivity {
         for(AsignacionEncargadoEntity asig:asignaciones){
             StringBuilder sb = new StringBuilder();
 
-            sb.append("\n Encargado: "+ usuarioDao.findById(asig.getIdEmpleado()).getNombre() + "\n");
+            sb.append("Encargado: "+ usuarioDao.findById(asig.getIdEmpleado()).getNombre() + "\n");
             sb.append("Laboratorio: "+ laboratorioDao.findById(asig.getIdLab()).getNombre() + "\n");
             sb.append("Ciclo: "+ cicloDao.findById(asig.getIdCiclo()).getCodigo() + "\n");
             String dias = "";
             String fecha = "";
             for(DetAsigEncargadoEntity det : detalleDao.findByIdAsig(asig.getId())){
-                dias += (det.getDia()==1)? "[ LUNES ] ": "";
-                dias += (det.getDia()==2)? "[ MARTES ] ": "";
-                dias += (det.getDia()==3)? "[ MIERCOLES ]": "";
-                dias += (det.getDia()==4)? "[ JUEVES ]": "";
-                dias += (det.getDia()==5)? "[ VIERNES ]": "";
-                dias += (det.getDia()==6)? "[ SABADO ]": "";
-                dias += (det.getDia()==7)? "[ DOMINGO ]": "";
-                fecha = det.getHoraInicio() +" --"+ det.getHoraFin();
+                dias += (det.getDia()==1)? "Lunes ": "";
+                dias += (det.getDia()==2)? "Martes ": "";
+                dias += (det.getDia()==3)? "Miercoles ": "";
+                dias += (det.getDia()==4)? "Jueves ": "";
+                dias += (det.getDia()==5)? "Viernes ": "";
+                dias += (det.getDia()==6)? "Sabado ": "";
+                dias += (det.getDia()==7)? "Domingo ": "";
+                fecha = "De: "+ det.getHoraInicio() +" hasta "+ det.getHoraFin();
             }
             sb.append("Dias: "+ dias + "\n");
-            sb.append("Horario"+ fecha+ "\n");
+            sb.append("Horario: "+ fecha+ "\n");
             encabezadoAsig.add(sb.toString());
         }
         listView = findViewById(R.id.Asignacion);
@@ -90,24 +89,24 @@ public class AdmiListadoAsignacion extends AppCompatActivity {
             ArrayList<String> encabezadoAsig = new ArrayList<>();
             for(AsignacionEncargadoEntity asig:asignaciones){
                 StringBuilder sb = new StringBuilder();
-                sb.append("\n");
-                sb.append(usuarioDao.findById(asig.getIdEmpleado()).getNombre() + "\n");
-                sb.append(laboratorioDao.findById(asig.getIdLab()).getNombre() + "\n");
-                sb.append(cicloDao.findById(asig.getIdCiclo()).getCodigo() + "\n");
+
+                sb.append("Encargado: "+ usuarioDao.findById(asig.getIdEmpleado()).getNombre() + "\n");
+                sb.append("Laboratorio: "+ laboratorioDao.findById(asig.getIdLab()).getNombre() + "\n");
+                sb.append("Ciclo: "+ cicloDao.findById(asig.getIdCiclo()).getCodigo() + "\n");
                 String dias = "";
                 String fecha = "";
                 for(DetAsigEncargadoEntity det : detalleDao.findByIdAsig(asig.getId())){
-                    dias += (det.getDia()==1)? "[ LUNES ] ": "";
-                    dias += (det.getDia()==2)? "[ MARTES ] ": "";
-                    dias += (det.getDia()==3)? "[ MIERCOLES ]": "";
-                    dias += (det.getDia()==4)? "[ JUEVES ]": "";
-                    dias += (det.getDia()==5)? "[ VIERNES ]": "";
-                    dias += (det.getDia()==6)? "[ SABADO ]": "";
-                    dias += (det.getDia()==7)? "[ DOMINGO ]": "";
-                    fecha = det.getHoraInicio() +" --"+ det.getHoraFin();
+                    dias += (det.getDia()==1)? "Lunes ": "";
+                    dias += (det.getDia()==2)? "Martes ": "";
+                    dias += (det.getDia()==3)? "Miercoles ": "";
+                    dias += (det.getDia()==4)? "Jueves ": "";
+                    dias += (det.getDia()==5)? "Viernes ": "";
+                    dias += (det.getDia()==6)? "Sabado ": "";
+                    dias += (det.getDia()==7)? "Domingo ": "";
+                    fecha = "De: "+ det.getHoraInicio() +" hasta "+ det.getHoraFin();
                 }
                 sb.append("Dias: "+ dias + "\n");
-                sb.append("Horario"+ fecha+ "\n");
+                sb.append("Horario: "+ fecha+ "\n");
                 encabezadoAsig.add(sb.toString());
             }
             listView = findViewById(R.id.Asignacion);
@@ -116,7 +115,6 @@ public class AdmiListadoAsignacion extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), "Modificación cancelada", Toast.LENGTH_LONG).show();
         }
-
 
     }
 }

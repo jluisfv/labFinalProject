@@ -78,11 +78,13 @@ public class AdmiModificarAsignacion extends AppCompatActivity {
         String labDefault = "";
         String cicloDefault = "";
         ArrayList<String> encabezadoLabs = new ArrayList<>();
+        encabezadoLabs.add("");
         for(LaboratorioEntity lab:laboratorios){
             encabezadoLabs.add(lab.getNombre());
             if(lab.getId() == asignacion.getIdLab()) labDefault = lab.getNombre();
         }
         ArrayList<String> encabezadoCiclos = new ArrayList<>();
+        encabezadoCiclos.add("");
         for(CicloEntity ciclo:ciclos){
             encabezadoCiclos.add(ciclo.getCodigo());
             if(ciclo.getId() == asignacion.getIdCiclo()) cicloDefault = ciclo.getCodigo();
@@ -156,39 +158,55 @@ public class AdmiModificarAsignacion extends AppCompatActivity {
         btnGuardar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(validSpinner(spinnerLabs)){//No se ha seleccionado del spinner
+                        if(validSpinner(spinnerCiclos)){
+                            if(validChecks()){
+                                if(validarEdt(edtHEntrada)) {
+                                    if (validarEdt(edtHSalida)) {
 
-                int idLab = laboratorios.get(spinnerLabs.getSelectedItemPosition()).getId();
-                int idCiclo = ciclos.get(spinnerCiclos.getSelectedItemPosition()).getId();
-                String entrada = edtHEntrada.getText().toString();
-                String salida = edtHSalida.getText().toString();
-                asignacionDao.update(new AsignacionEncargadoEntity(asignacion.getId(), asignacion.getIdEmpleado(), idLab, idCiclo));
-                detalleDao.deleteByIdAsig(asignacion.getId());
-                if(c1.isChecked()){ //Lunes
-                    detalleDao.save(new DetAsigEncargadoEntity(0, 1,entrada, salida, asignacion.getId()));
+                                        int idLab = laboratorios.get((spinnerLabs.getSelectedItemPosition()) - 1).getId();
+                                        int idEnc = asignacion.getIdEmpleado();
+                                        int idCiclo = ciclos.get((spinnerCiclos.getSelectedItemPosition()) - 1).getId();
+                                        String entrada = edtHEntrada.getText().toString();
+                                        String salida = edtHSalida.getText().toString();
+
+                                        asignacionDao.update(
+                                                new AsignacionEncargadoEntity(0, idEnc, idLab, idCiclo)
+                                        );
+                                        detalleDao.deleteByIdAsig(asignacion.getId());
+
+                                        if (c1.isChecked()) { //Lunes
+                                            detalleDao.save(new DetAsigEncargadoEntity(0, 1, entrada, salida, asignacion.getId()));
+                                        }
+                                        if (c2.isChecked()) {//Martes
+                                            detalleDao.save(new DetAsigEncargadoEntity(0, 2, entrada, salida, asignacion.getId()));
+                                        }
+                                        if (c3.isChecked()) {//Miercoles
+                                            detalleDao.save(new DetAsigEncargadoEntity(0, 3, entrada, salida, asignacion.getId()));
+                                        }
+                                        if (c4.isChecked()) {//Jueves
+                                            detalleDao.save(new DetAsigEncargadoEntity(0, 4, entrada, salida, asignacion.getId()));
+                                        }
+                                        if (c5.isChecked()) {//Viernes
+                                            detalleDao.save(new DetAsigEncargadoEntity(0, 5, entrada, salida, asignacion.getId()));
+                                        }
+                                        if (c6.isChecked()) {//Sabado
+                                            detalleDao.save(new DetAsigEncargadoEntity(0, 6, entrada, salida, asignacion.getId()));
+                                        }
+                                        if (c7.isChecked()) {//Domingo
+                                            detalleDao.save(new DetAsigEncargadoEntity(0, 7, entrada, salida, asignacion.getId()));
+                                        }
+                                        Toast.makeText(getApplicationContext(), "Datos Almacenados", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(getApplicationContext(), AdmiListadoAsignacion.class);
+                                        startActivity(intent);
+
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-                if(c2.isChecked()){//Martes
-                    detalleDao.save(new DetAsigEncargadoEntity(0, 2,entrada, salida, asignacion.getId()));
-                }
-                if(c3.isChecked()){//Miercoles
-                    detalleDao.save(new DetAsigEncargadoEntity(0, 3,entrada, salida, asignacion.getId()));
-                }
-                if(c4.isChecked()){//Jueves
-                    detalleDao.save(new DetAsigEncargadoEntity(0, 4,entrada, salida, asignacion.getId()));
-                }
-                if(c5.isChecked()){//Viernes
-                    detalleDao.save(new DetAsigEncargadoEntity(0, 5,entrada, salida, asignacion.getId()));
-                }
-                if(c6.isChecked()){//Sabado
-                    detalleDao.save(new DetAsigEncargadoEntity(0, 6,entrada, salida, asignacion.getId()));
-                }
-                if(c7.isChecked()){//Domingo
-                    detalleDao.save(new DetAsigEncargadoEntity(0, 7,entrada, salida, asignacion.getId()));
-                }
-                Toast.makeText(getApplicationContext(),"Datos modificados", Toast.LENGTH_LONG ).show();
-                Intent intent = new Intent();
-                setResult(RESULT_OK, intent);
-                finish();
-            }
+
         } );
 
         btnCancelar.setOnClickListener( new View.OnClickListener() {
@@ -199,5 +217,31 @@ public class AdmiModificarAsignacion extends AppCompatActivity {
                 finish();
             }
         } );
+    }
+
+    public boolean validarEdt(EditText edt){
+        if (edt.getText().toString().isEmpty()){
+            Toast.makeText(getApplicationContext(), "Por favor, complete todos los campos", Toast.LENGTH_LONG).show();
+            edt.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validSpinner(Spinner spinner){
+        if(spinner.getSelectedItemPosition() == 0){
+            Toast.makeText(getApplicationContext(), "Complete todos los campos", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validChecks(){
+        if(c1.isChecked() || c2.isChecked() || c3.isChecked() || c4.isChecked() || c5.isChecked()
+                || c6.isChecked() || c7.isChecked()){
+            return true;
+        }
+        Toast.makeText(getApplicationContext(), "Seleccione al menos un dia", Toast.LENGTH_LONG).show();
+        return false;
     }
 }

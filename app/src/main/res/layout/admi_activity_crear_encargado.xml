@@ -9,24 +9,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingHorizontal="4dp">
 
-        <TextView
-            android:id="@+id/textView33"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#05552222"
-            android:gravity="center"
-            android:text="@string/menu_crear_encargado"
-            android:textColorHint="#001A455E"
-            android:textColorLink="#2D4C9B"
-            android:textSize="24sp" />
         <EditText
             android:id="@+id/edtNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nombre"
+            android:layout_marginBottom="15dp"
             android:inputType="textPersonName" />
 
         <EditText
@@ -35,6 +28,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Apellido"
+            android:layout_marginBottom="15dp"
             android:inputType="textPersonName" />
 
         <EditText
@@ -43,6 +37,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Correo"
+            android:layout_marginBottom="15dp"
             android:inputType="textPersonName" />
 
         <EditText
@@ -51,6 +46,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Contraseña"
+            android:layout_marginBottom="15dp"
             android:inputType="textPassword" />
 
         <TextView
@@ -76,17 +72,32 @@
                 android:layout_height="wrap_content"
                 android:text="Inactivo" />
         </RadioGroup>
-
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <Button
             android:id="@+id/btnGuardar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="4dp"
+            android:background="@color/btnPrimary"
+            android:textColor="@color/mr_cast_meta_default_text_color"
             android:text="Guardar" />
 
         <Button
             android:id="@+id/btnCancelar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:background="@color/mr_cast_progressbar_background_light"
             android:text="Cancelar" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

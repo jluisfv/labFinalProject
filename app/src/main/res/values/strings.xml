@@ -25,6 +25,11 @@
     <string name="menu_Lista_Ciclo">Ciclo</string>
     <string name="menu_inicio">Actividades</string>
 
+    <string name="spinner_laboratorio">Seleccione un laboratorio</string>
+    <string name="spinner_encargado">Selecciones un encargado</string>
+    <string name="spinner_ciclo">Seleccione un ciclo</string>
+    <string name="spinner_edificio">Seleccione un edificio</string>
+
     <string-array name="status_array">
         <item>Activo</item>
         <item>Inactivo</item>

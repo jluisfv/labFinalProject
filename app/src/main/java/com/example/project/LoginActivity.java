@@ -1,6 +1,8 @@
 package com.example.project;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -49,6 +51,15 @@ public class LoginActivity extends AppCompatActivity {
     void logearse(String user, String pass){
         UsuarioEntity usuarioEntity = usuarioDao.findAcceso(user, pass);
         if (usuarioEntity != null){
+
+            SharedPreferences mPrefs = getSharedPreferences("Global", Context.MODE_PRIVATE);
+            SharedPreferences.Editor prefsEditor = mPrefs.edit();
+            prefsEditor.putInt("idUsuario", usuarioEntity.getId());
+            prefsEditor.putString("nombreUsuario", usuarioEntity.getNombre());
+            prefsEditor.putString("apellidoUsuario", usuarioEntity.getApellido());
+            prefsEditor.putString("tipoUsuario", usuarioEntity.getTipo());
+            prefsEditor.apply();
+            String hola = mPrefs.getString("nombreUsuario","Hola");
             if(usuarioEntity.getTipo().equalsIgnoreCase("ADMINISTRADOR")){
                 Intent intent = new Intent(getApplicationContext(), AdmiMainActivity.class);
                 startActivity(intent);

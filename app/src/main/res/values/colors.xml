@@ -5,4 +5,6 @@
     <color name="colorAccent">#01070A</color>
     <color name="txtFontDark">#37474F</color>
     <color name="txtFontLight">#90A4AE</color>
+
+    <color name="btnPrimary">#1E88E5</color>
 </resources>

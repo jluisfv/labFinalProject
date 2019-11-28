@@ -5,11 +5,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.administrador.AdmiFragment">
-
-    <ImageView
-        android:id="@+id/imageView7"
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F2A24242"
-        android:src="@mipmap/admin1_foreground" />
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hola, usuario"
+            android:textSize="30dp"
+            android:paddingVertical="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/radius_blue_back"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Cantidad de Laboratorios"
+                android:textColor="@color/cardview_light_background"
+                android:textAlignment="textEnd"
+                android:gravity="center_vertical"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/cantLabs"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="8"
+                android:textSize="60dp"
+                android:textColor="@color/cardview_light_background"
+                android:textAlignment="center"
+                android:gravity="center_vertical"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@drawable/radius_orange_back"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/cantEncar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="8"
+                android:textSize="60dp"
+                android:textColor="@color/cardview_light_background"
+                android:textAlignment="center"
+                android:gravity="center_vertical"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:paddingLeft="4dp"
+                android:layout_height="match_parent"
+                android:text="Cantidad de Encargados"
+                android:textColor="@color/cardview_light_background"
+                android:textAlignment="textStart"
+                android:gravity="center_vertical"
+                android:textSize="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:background="@drawable/radius_teal_back"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:paddingTop="20dp"
+                android:layout_height="wrap_content"
+                android:text="Asignaciones Registradas"
+                android:textColor="@color/cardview_light_background"
+                android:textAlignment="center"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/cantAsig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="8"
+                android:textSize="60dp"
+                android:textColor="@color/cardview_light_background"
+                android:textAlignment="center"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
 </FrameLayout>

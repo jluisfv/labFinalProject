@@ -26,6 +26,7 @@ public class AdmiCrearEncargado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admi_activity_crear_encargado);
+        setTitle("Crear Encargado");
 
         edtNombre = findViewById(R.id.edtNombre);
         edtApellido = findViewById(R.id.edtApellido);

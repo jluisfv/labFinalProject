@@ -19,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AdmiModificarEncargado extends AppCompatActivity {
     Button btnGuardar, btnCancelar;
-    SQLiteDatabase bd;
-    TextView tvencar;
     EditText edtNombre, edtApellido, edtCorreo, edtContra;
     RadioButton ra,ri;
     UsuarioDao usuarioDao;

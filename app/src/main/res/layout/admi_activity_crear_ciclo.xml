@@ -7,13 +7,11 @@
     tools:context=".AdmiCrearCiclo">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        tools:ignore="MissingConstraints">
+        android:paddingTop="20dp"
+        android:layout_marginHorizontal="4dp">
 
         <EditText
             android:id="@+id/edtCiclo"
@@ -21,6 +19,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Ciclo"
+            android:layout_marginBottom="15dp"
             android:inputType="textPersonName" />
 
         <EditText
@@ -29,6 +28,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Fecha de Inicio"
+            android:layout_marginBottom="15dp"
             android:inputType="date"
             android:focusable="false"/>
 
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Fecha de Finalizacion"
+            android:layout_marginBottom="15dp"
             android:inputType="date"
             android:focusable="false"/>
 
@@ -46,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:text="Estado"
+            android:layout_marginBottom="15dp"
             android:textSize="18sp" />
 
         <RadioGroup
@@ -65,16 +67,32 @@
                 android:text="Inactivo" />
         </RadioGroup>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <Button
             android:id="@+id/btnGuardar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="4dp"
+            android:background="@color/btnPrimary"
+            android:textColor="@color/mr_cast_meta_default_text_color"
             android:text="Guardar" />
 
         <Button
             android:id="@+id/btnCancelar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:background="@color/mr_cast_progressbar_background_light"
             android:text="Cancelar" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

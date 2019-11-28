@@ -39,7 +39,7 @@ public class AdmiCrearLaboratorio extends AppCompatActivity {
 
         listEdificios = edificioDao.getList();
         ArrayList<String> encabezadoLista = new ArrayList<>();
-
+        encabezadoLista.add("");
         for (EdificioEntity edificio: listEdificios){
             encabezadoLista.add(edificio.getNombre());
         }
@@ -61,9 +61,9 @@ public class AdmiCrearLaboratorio extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validarEdt(edtLab)){
-
-                        if(validarEdt(edtPlanta)){
-                            int nEdi = listEdificios.get(spinner.getSelectedItemPosition()).getId();
+                    if(validarSpinner(spinner)) {
+                        if (validarEdt(edtPlanta)) {
+                            int nEdi = listEdificios.get(spinner.getSelectedItemPosition() - 1).getId();
                             laboratorio = new LaboratorioEntity(
                                     0,
                                     edtLab.getText().toString(),
@@ -71,11 +71,11 @@ public class AdmiCrearLaboratorio extends AppCompatActivity {
                                     edtPlanta.getText().toString()
                             );
                             laboratorioDao.save(laboratorio);
-                            Toast.makeText( getApplicationContext(),"GUARDADO CON EXITO", Toast.LENGTH_LONG ).show();
+                            Toast.makeText(getApplicationContext(), "GUARDADO CON EXITO", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(getApplicationContext(), AdmiListadoLaboratorio.class);
                             startActivity(intent);
                         }
-
+                    }
                 }
             }
         });
